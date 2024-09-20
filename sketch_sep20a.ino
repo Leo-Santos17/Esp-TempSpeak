@@ -1,28 +1,26 @@
-#include <ESP8266WiFi.h>
-#include <WiFiClient.h>
-#include <ESP8266WebServer.h>
-#include <ESP8266mDNS.h>
+// Define o pino do sensor LM35
+const int lm35Pin = A0; // Pino analógico do NodeMCU
 
-// Defina o pino onde o LED está conectado
-const int ledPin = 14;  // GPIO5 (D1 no NodeMCU)
-float temp=0;
-int analog= 0;
 void setup() {
-  // Configura o pino do LED como saída
-  pinMode(ledPin, OUTPUT);
-  Serial.begin(115200);
-  Serial.println();
-  Serial.println();
+  Serial.begin(9600); // Inicializa a comunicação serial
+  Serial.print("VAI TOMAR NO CU");
 }
 
 void loop() {
-  // Analog
-  analog= analogRead(17);
-  temp = analog*0.48828125;
+  // Lê o valor analógico do sensor LM35
+  int analogValue = analogRead(lm35Pin);
   
-  Serial.print("Temp: ");
-  Serial.print(temp);
+  // Converte o valor analógico para tensão (ESP8266 usa resolução de 10 bits)
+  float voltage = analogValue * (3.3 / 1024.0); // 3.3V é a referência
   
-  // Aguarda 1 segundo
+  // Converte a tensão para temperatura em graus Celsius
+  float temperatureC = voltage * 100.0;
+  
+  // Exibe a temperatura no monitor serial
+  Serial.print("Temperatura: ");
+  Serial.print(temperatureC);
+  Serial.println(" °C");
+  
+  // Aguarda 1 segundo antes de ler novamente
   delay(1000);
 }
