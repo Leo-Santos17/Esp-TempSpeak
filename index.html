@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Temperatura</title>
+    <style>
+        /* Estilos básicos e responsivos */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        
+        h1 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            font-size: 1.5em; /* Tamanho reduzido para celulares */
+        }
+
+        .container {
+            padding: 10px;
+        }
+
+        iframe {
+            width: 100%; /* Ocupar toda a largura no celular */
+            height: 300px; /* Ajustar altura do gráfico */
+            border: 1px solid #cccccc;
+        }
+
+        footer {
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            font-size: 12px; /* Tamanho do texto menor */
+        }
+
+        /* Estilos para tablets e telas maiores */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 2em;
+                padding: 15px;
+            }
+            iframe {
+                width: 80%;
+                height: 400px;
+            }
+            footer {
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            iframe {
+                width: 70%;
+                height: 450px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Escola Semente do Saber - Monitoramento de Temperatura</h1>
+    
+    <div class="container">
+        <!-- IFrame do gráfico de temperatura do ThingSpeak -->
+        <iframe 
+            src="https://thingspeak.com/channels/2609085/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15" 
+            frameborder="0" 
+            allowfullscreen>
+        </iframe>
+    </div>
+    <footer>
+        Desenvolvido por <strong>Fellipe Nascimento de Almeida e Leonardo Santos Maciel</strong>
+    </footer>
+</body>
+</html>
